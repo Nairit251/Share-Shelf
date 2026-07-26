@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 26, 2026 at 04:23 PM
+-- Generation Time: Jul 26, 2026 at 05:12 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -426,7 +426,17 @@ INSERT INTO `item_image` (`Image_ID`, `Item_ID`, `Image_URL`, `Is_Primary`) VALU
 (63, 48, 'images/items/lego_classic_bricks.jpg', 1),
 (64, 49, 'images/items/panasonic_microwave.jpg', 1),
 (65, 50, 'images/items/lenovo_ideapad_slim3_front.jpg', 1),
-(66, 50, 'images/items/lenovo_ideapad_slim3_keyboard.jpg', 0);
+(66, 50, 'images/items/lenovo_ideapad_slim3_keyboard.jpg', 0),
+(67, 51, 'images/items/samsung_galaxy_s21.jpg', 1),
+(68, 52, 'images/items/maybelline_fit_me_foundation.jpg', 1),
+(69, 53, 'images/items/data_structures_algorithms.jpg', 1),
+(70, 54, 'images/items/beurer_digital_thermometer.jpg', 1),
+(71, 55, 'images/items/philips_rice_cooker_rejected.jpg', 1),
+(72, 56, 'images/items/adjustable_dumbbell_set.jpg', 1),
+(73, 57, 'images/items/used_makeup_brush_set.jpg', 1),
+(74, 58, 'images/items/iphone13_activation_locked.jpg', 1),
+(75, 59, 'images/items/broken_glass_coffee_table.jpg', 1),
+(76, 60, 'images/items/torn_camping_tent.jpg', 1);
 
 -- --------------------------------------------------------
 
