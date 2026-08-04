@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manage Users · Share Shelf Admin</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div id="navbar-mount"></div>
+
+<div class="container py-4">
+  <a href="admin.html" class="btn btn-sm btn-outline-secondary mb-3">&larr; Dashboard</a>
+  <h3 class="mb-3">All Users</h3>
+
+  <div class="table-responsive">
+  <table class="table bg-white shadow-sm align-middle">
+    <thead><tr><th>ID</th><th>Name</th><th>Phone</th><th>Location</th><th>Rating</th><th>Reports Received</th><th>Status</th><th></th></tr></thead>
+    <tbody id="usersBody"></tbody>
+  </table>
+  </div>
+</div>
+
+<div id="footer-mount"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+<script>
+  requireDemoAdmin();
+
+  const sampleUsers = [
+    { id: 1, name: "Ayesha Rahman", phone: "01711111111", loc: "Dhaka, Banani", rating: 4.6, reports: 0, banned: false },
+    { id: 2, name: "Nusrat Jahan", phone: "01722222222", loc: "Chattogram, Agrabad", rating: 4.9, reports: 0, banned: false },
+    { id: 3, name: "Tanvir Hasan", phone: "01733333333", loc: "Dhaka, Mirpur", rating: 3.8, reports: 2, banned: false },
+    { id: 4, name: "Sadia Islam", phone: "01744444444", loc: "Rajshahi, Boalia", rating: 4.1, reports: 0, banned: false },
+    { id: 5, name: "Mehedi Hasan", phone: "01755555555", loc: "Khulna, Daulatpur", rating: 2.5, reports: 4, banned: false },
+  ];
+
+  const body = document.getElementById('usersBody');
+
+  function renderUsers() {
+    body.innerHTML = '';
+    sampleUsers.forEach(u => {
+      body.innerHTML += `
+        <tr>
+          <td>${u.id}</td>
+          <td>${u.name}</td>
+          <td>${u.phone}</td>
+          <td>${u.loc}</td>
+          <td>${u.rating ? '⭐ ' + u.rating.toFixed(1) : 'No ratings'}</td>
+          <td class="${u.reports > 0 ? 'text-danger fw-bold' : ''}">${u.reports}</td>
+          <td>${u.banned ? '<span class="badge bg-danger">Banned</span>' : '<span class="badge bg-success">Active</span>'}</td>
+          <td>
+            ${u.banned
+              ? `<button class="btn btn-sm btn-outline-success" onclick="toggleBan(${u.id})">Unban</button>`
+              : `<button class="btn btn-sm btn-outline-danger" onclick="toggleBan(${u.id})">Ban</button>`}
+          </td>
+        </tr>`;
+    });
+  }
+
+  function toggleBan(id) {
+    const u = sampleUsers.find(u => u.id === id);
+    if (!u.banned && !confirm('Ban this user? Their listings will be removed.')) return;
+    u.banned = !u.banned;
+    renderUsers();
+  }
+
+  renderUsers();
+</script>
+</body>
+</html>

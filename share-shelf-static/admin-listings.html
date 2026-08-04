@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manage Listings · Share Shelf Admin</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div id="navbar-mount"></div>
+
+<div class="container py-4">
+  <a href="admin.html" class="btn btn-sm btn-outline-secondary mb-3">&larr; Dashboard</a>
+  <h3 class="mb-3">Pending Approval</h3>
+
+  <div id="pendingList">
+    <div class="card shadow-sm mb-3" data-id="p1">
+      <div class="card-body">
+        <div class="d-flex justify-content-between flex-wrap">
+          <div>
+            <h5 class="mb-1">Bookshelf - 5 Tier</h5>
+            <div class="text-muted small mb-2">Furniture · Seller: Rakib Hossain</div>
+          </div>
+          <div class="text-end"><span class="fw-bold">৳1,200.00</span></div>
+        </div>
+        <dl class="row small mb-2">
+          <dt class="col-sm-2">Condition</dt><dd class="col-sm-10">Good</dd>
+          <dt class="col-sm-2">Description</dt><dd class="col-sm-10">Wooden bookshelf, 5 tiers, minor wear on the base.</dd>
+          <dt class="col-sm-2">Quantity</dt><dd class="col-sm-10">1</dd>
+          <dt class="col-sm-2">Pickup</dt><dd class="col-sm-10">Mirpur</dd>
+        </dl>
+        <button class="btn btn-sm btn-success" onclick="decide(this, 'Approved')">Approve</button>
+        <button class="btn btn-sm btn-danger" onclick="decide(this, 'Rejected')">Reject</button>
+      </div>
+    </div>
+    <div class="card shadow-sm mb-3" data-id="p2">
+      <div class="card-body">
+        <div class="d-flex justify-content-between flex-wrap">
+          <div>
+            <h5 class="mb-1">Kids' Storybook Bundle</h5>
+            <div class="text-muted small mb-2">Novels · Seller: Fahim Uddin</div>
+          </div>
+          <div class="text-end"><span class="badge badge-free">Free</span></div>
+        </div>
+        <dl class="row small mb-2">
+          <dt class="col-sm-2">Condition</dt><dd class="col-sm-10">Like New</dd>
+          <dt class="col-sm-2">Description</dt><dd class="col-sm-10">Bundle of 8 storybooks for ages 5-8.</dd>
+          <dt class="col-sm-2">Quantity</dt><dd class="col-sm-10">1</dd>
+          <dt class="col-sm-2">Pickup</dt><dd class="col-sm-10">Kazla</dd>
+        </dl>
+        <button class="btn btn-sm btn-success" onclick="decide(this, 'Approved')">Approve</button>
+        <button class="btn btn-sm btn-danger" onclick="decide(this, 'Rejected')">Reject</button>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="mb-3 mt-5">Recently Approved</h3>
+  <div class="table-responsive">
+  <table class="table bg-white shadow-sm align-middle">
+    <thead><tr><th>Title</th><th>Category</th><th>Seller</th><th>Status</th></tr></thead>
+    <tbody id="approvedBody"></tbody>
+  </table>
+  </div>
+</div>
+
+<div id="footer-mount"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+<script>
+  requireDemoAdmin();
+
+  const approvedBody = document.getElementById('approvedBody');
+  ITEMS.slice(0, 5).forEach(item => {
+    approvedBody.innerHTML += `
+      <tr>
+        <td>${item.title}</td>
+        <td>${categoryName(item.category)}</td>
+        <td>${item.seller}</td>
+        <td>Available</td>
+      </tr>`;
+  });
+
+  function decide(btn, decision) {
+    const card = btn.closest('.card');
+    card.style.opacity = '0.5';
+    card.querySelector('.card-body').insertAdjacentHTML('beforeend',
+      `<div class="alert alert-${decision === 'Approved' ? 'success' : 'danger'} mt-2 mb-0 py-2 small">Marked ${decision} (demo only)</div>`);
+    card.querySelectorAll('button').forEach(b => b.disabled = true);
+  }
+</script>
+</body>
+</html>

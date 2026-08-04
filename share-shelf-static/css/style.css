@@ -1,0 +1,26 @@
+body {
+  background-color: #f7f8f7;
+}
+
+.card-item img {
+  height: 180px;
+  object-fit: cover;
+  background: #e9ecef;
+}
+
+.card-item .card-title {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.badge-free {
+  background-color: #2f6f4f;
+}
+
+.navbar-brand {
+  letter-spacing: 0.5px;
+}
+
+.stat-card {
+  border-left: 4px solid #2f6f4f;
+}
